@@ -11,14 +11,24 @@ namespace AlphaCyperTest
     public class Cyphertests 
     {
         [TestMethod]
-        public void TestCaesar()
+        public void TestCaesarError()
         {
             string testo = "ABBA";
-            string codice = "D";
+            string codice = "A";
             string ris = "EFFE";
             Caesar crypt = new Caesar();
             string codifica = crypt.Encode(testo, codice);
             Assert.AreEqual(codifica,ris);
+        }
+        [TestMethod]
+        public void TestCaesarOk()
+        {
+            string testo = "ABBA";
+            string codice = "D";
+            string ris = "DEED";
+            Caesar crypt = new Caesar();
+            string codifica = crypt.Encode(testo, codice);
+            Assert.AreEqual(codifica, ris);
         }
     }
 }

@@ -6,24 +6,40 @@ using System.Threading.Tasks;
 
 namespace AlphaCypher
 {
-    public class Caesar : ICypher
+    public class Caesar : CypherBase 
     {
-        public string Decode(string text, string cypher)
+        public Caesar() : base()
+        {
+
+        }
+        public Caesar(int displacement) : base()
+        {
+            _displacement = displacement;
+        }
+        public override string Encode(string testo, int spiazzamento)
+        {
+            string resp = "";
+            resp = base.Encode(testo, spiazzamento);
+            return resp;
+        }
+        public override string Decode(string text, string cypher)
         {
             throw new NotImplementedException();
         }
 
-        public string Encode(string text, string cypher)
+        public override string Encode(string text, string cypher)
+        {
+            string resp = "";
+            resp = base.Encode(text, cypher);
+            return resp;
+        }
+
+        public override Task<string> DecodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> DecodeAsync(string text, string cypher)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> EncodeAsync(string text, string cypher)
+        public override Task<string> EncodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
         }
