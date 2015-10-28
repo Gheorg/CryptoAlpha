@@ -36,53 +36,30 @@ namespace AlphaCypher
             }
             return resp;
         }
-        public string Encode(string text)
+        
+        public virtual string Encode(char text, char cypher)
         {
             string resp = "";
-            resp = Encode(text, _displacement);
+            int positionTxt = ResearchPosition(text);
+            int positionCypher = ResearchPosition(cypher);
+            int posEncoded = (positionTxt + positionCypher) % 26;
+            resp += _vettAlphabet[posEncoded];
             return resp;
         }
-        public string Encode(char text, char cypher)
+        public virtual string Decode(char text, char cypher)
         {
             string resp = "";
-            resp = this.Encode(text.ToString(), cypher.ToString());
+            int positionTxt = ResearchPosition(text);
+            int positionCypher = ResearchPosition(cypher);
+            int posEncoded = (positionTxt - positionCypher + 26) % 26;
+            resp += _vettAlphabet[posEncoded];
             return resp;
         }
 
-        public virtual string Encode(string text, int cypher)
-        {
-            string resp = "";
-            char[] s = text.ToCharArray();
-            for (int i = 0; i < s.Length; i++)
-            {
-                char tmp = s[i];
-                int pos = ResearchPosition(tmp);
-                int posCodificata = (pos + cypher) % 26;
-                resp += _vettAlphabet[posCodificata];
-
-            }
-            return resp;
-        }
-        public virtual string Decode(string text, int cypher)
-        {
-            string resp = "";
-            char[] s = text.ToCharArray();
-            for (int i = 0; i < s.Length; i++)
-            {
-                char tmp = s[i];
-                int pos = ResearchPosition(tmp);
-                int posCodificata = (pos - cypher + 26) % 26;
-                resp += _vettAlphabet[posCodificata];
-
-            }
-            return resp;
-        }
+        
         public virtual string Decode(string text, string cypher)
-        {
-            string resp = "";
-            int spiazzamento = ResearchPosition(cypher.ToUpper()[0]);
-            resp = Decode(text.ToUpper(), spiazzamento);
-            return resp;
+        {           
+           return "";
         }
 
         public virtual Task<string> DecodeAsync(string text, string cypher)
@@ -92,10 +69,7 @@ namespace AlphaCypher
 
         public virtual string Encode(string text, string cypher)
         {
-            string resp = "";
-            int spiazzamento = ResearchPosition(cypher.ToUpper()[0]);
-            resp = Encode(text.ToUpper(), spiazzamento);
-            return resp;
+            return "";
         }
 
         public virtual Task<string> EncodeAsync(string text, string cypher)

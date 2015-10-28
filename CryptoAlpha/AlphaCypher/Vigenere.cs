@@ -15,7 +15,10 @@ namespace AlphaCypher
 
         public override string Decode(string text, string cypher)
         {
-            throw new NotImplementedException();
+            string resp = "";
+            for (int i = 0; i < text.Length; i++)
+                resp += base.Decode(text[i], cypher[i % cypher.Length]);
+            return resp;
         }
 
         public new string Encode(string text, string cypher)

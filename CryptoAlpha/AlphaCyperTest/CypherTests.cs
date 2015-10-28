@@ -38,8 +38,8 @@ namespace AlphaCyperTest
             string cypher = "D";
             string ris = "XYYX";
             Caesar crypt = new Caesar();
-            string codifica = crypt.Decode(text, cypher);
-            Assert.AreEqual(codifica, ris);
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
         }
         [TestMethod]
         public void TestCaesarDecodeError()
@@ -48,8 +48,8 @@ namespace AlphaCyperTest
             string cypher = "D";
             string ris = "DEED";
             Caesar crypt = new Caesar();
-            string codifica = crypt.Decode(text, cypher);
-            Assert.AreEqual(codifica, ris);
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
         }
         //VigenereTest
         [TestMethod]
@@ -63,6 +63,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public void TestVigenereDecodeOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "XWJX";
+            Vigenere crypt = new Vigenere();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
         public void TestVigenereEncodeError()
         {
             string text = "ABBA";
@@ -71,6 +81,16 @@ namespace AlphaCyperTest
             Vigenere crypt = new Vigenere();
             string encode = crypt.Encode(text, cypher);
             Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestVigenereDecodeError()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "DGDT";
+            Vigenere crypt = new Vigenere();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
         }
     }
 }

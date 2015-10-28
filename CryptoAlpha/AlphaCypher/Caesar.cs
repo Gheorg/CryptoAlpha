@@ -19,14 +19,20 @@ namespace AlphaCypher
         public override string Decode(string text, string cypher)
         {
             string resp = "";
-            resp = base.Decode(text, cypher);
+            for (int i = 0; i < text.Length; i++)
+            {
+                resp += base.Decode(text[i], cypher[0]);
+            }
             return resp;
         }
 
         public override string Encode(string text, string cypher)
         {
             string resp = "";
-            resp = base.Encode(text, cypher);
+            for (int i = 0; i < text.Length; i++)
+            {
+                resp += base.Encode(text[i], cypher[0]);         
+            }
             return resp;
         }
 
