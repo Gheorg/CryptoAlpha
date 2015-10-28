@@ -15,16 +15,12 @@ namespace AlphaCypher
         public Caesar(int displacement) : base()
         {
             _displacement = displacement;
-        }
-        public override string Encode(string testo, int spiazzamento)
-        {
-            string resp = "";
-            resp = base.Encode(testo, spiazzamento);
-            return resp;
-        }
+        }      
         public override string Decode(string text, string cypher)
         {
-            throw new NotImplementedException();
+            string resp = "";
+            resp = base.Decode(text, cypher);
+            return resp;
         }
 
         public override string Encode(string text, string cypher)

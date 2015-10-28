@@ -36,6 +36,19 @@ namespace AlphaCypher
             }
             return resp;
         }
+        public string Encode(string text)
+        {
+            string resp = "";
+            resp = Encode(text, _displacement);
+            return resp;
+        }
+        public string Encode(char text, char cypher)
+        {
+            string resp = "";
+            resp = this.Encode(text.ToString(), cypher.ToString());
+            return resp;
+        }
+
         public virtual string Encode(string text, int cypher)
         {
             string resp = "";
@@ -43,16 +56,33 @@ namespace AlphaCypher
             for (int i = 0; i < s.Length; i++)
             {
                 char tmp = s[i];
-                int pos = ResearchPosition(tmp);             
-                int posCodificata = (pos + cypher) % 26;     
+                int pos = ResearchPosition(tmp);
+                int posCodificata = (pos + cypher) % 26;
                 resp += _vettAlphabet[posCodificata];
-                
+
+            }
+            return resp;
+        }
+        public virtual string Decode(string text, int cypher)
+        {
+            string resp = "";
+            char[] s = text.ToCharArray();
+            for (int i = 0; i < s.Length; i++)
+            {
+                char tmp = s[i];
+                int pos = ResearchPosition(tmp);
+                int posCodificata = (pos - cypher + 26) % 26;
+                resp += _vettAlphabet[posCodificata];
+
             }
             return resp;
         }
         public virtual string Decode(string text, string cypher)
         {
-            return "";
+            string resp = "";
+            int spiazzamento = ResearchPosition(cypher.ToUpper()[0]);
+            resp = Decode(text.ToUpper(), spiazzamento);
+            return resp;
         }
 
         public virtual Task<string> DecodeAsync(string text, string cypher)

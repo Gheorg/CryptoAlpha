@@ -6,7 +6,34 @@ using System.Threading.Tasks;
 
 namespace AlphaCypher
 {
-    class Vigenere
+    public class Vigenere: CypherBase
     {
+        public Vigenere() : base()
+        {
+
+        }
+
+        public override string Decode(string text, string cypher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public new string Encode(string text, string cypher)
+        {
+            string resp = "";
+            for (int i = 0; i < text.Length; i++)
+                resp += base.Encode(text[i], cypher[i % cypher.Length]);
+            return resp;
+        }
+
+        public override Task<string> DecodeAsync(string text, string cypher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<string> EncodeAsync(string text, string cypher)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
