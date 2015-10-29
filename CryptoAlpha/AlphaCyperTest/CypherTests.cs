@@ -136,5 +136,45 @@ namespace AlphaCyperTest
             Assert.AreEqual(decode, ris);
         }
 
+        //Vigenere32 Test
+        [TestMethod]
+        public void TestVigenere32EncodeOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "IRDVIRA=";
+            Vigenere32 crypt = new Vigenere32();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        public void TestVigenere32DecodeOk()
+        {
+            string text = "IRDVIRA=";
+            string cypher = "DFS";
+            string ris = "ABBA";
+            Vigenere32 crypt = new Vigenere32();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public void TestVigenere32EncodeError()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "IRDVIRB=";
+            Vigenere crypt = new Vigenere();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestVigenere32DecodeError()
+        {
+            string text = "IRDVIRA=";
+            string cypher = "DFS";
+            string ris = "DGDT";
+            Vigenere crypt = new Vigenere();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
     }
 }
