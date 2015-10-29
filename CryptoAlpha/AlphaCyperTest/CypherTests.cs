@@ -10,6 +10,7 @@ namespace AlphaCyperTest
     [TestClass]
     public class Cyphertests
     {
+        
         //CaesarTest
         [TestMethod]
         public void TestCaesarEncodeError()
@@ -51,6 +52,7 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
+       
         //VigenereTest
         [TestMethod]
         public void TestVigenereEncodeOk()
@@ -92,5 +94,47 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
+
+        //Caesar32Test
+        [TestMethod]
+        public void TestCaesar32EncodeOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "IRCUKRA=";
+            Caesar32 crypt = new Caesar32();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestCaesar32EncodeError()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "IRCAKRA=";
+            Caesar32 crypt = new Caesar32();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestCaesar32DecodeOk()
+        {
+            string text = "IRCUKRA=";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar32 crypt = new Caesar32();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        public void TestCaesar32DecodeError()
+        {
+            string text = "IRCAKRA=";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar32 crypt = new Caesar32();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+
     }
 }
