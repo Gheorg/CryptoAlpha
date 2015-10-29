@@ -14,10 +14,9 @@ namespace AlphaCypher
         {
             _b32 = new Base32Encoding();
         }
-        public virtual string Decode(string text, string cypher)
+        public override string Decode(string text, string cypher)
         {
-            string resp = "";
-            string res = "";
+            string resp = "";            
             char[] vetChar = text.ToCharArray();
             byte[] ris = _b32.Decode(vetChar);
             resp = Encoding.UTF8.GetString(ris, 0, ris.Length);
@@ -26,12 +25,12 @@ namespace AlphaCypher
             return resp;
         }
 
-        public virtual Task<string> DecodeAsync(string text, string cypher)
+        public override Task<string> DecodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
         }
 
-        public virtual string Encode(string text, string cypher)
+        public override string Encode(string text, string cypher)
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
@@ -44,7 +43,7 @@ namespace AlphaCypher
             return resp;
         }
 
-        public virtual Task<string> EncodeAsync(string text, string cypher)
+        public override Task<string> EncodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
         }

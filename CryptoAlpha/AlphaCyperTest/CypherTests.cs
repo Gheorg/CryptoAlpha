@@ -176,5 +176,89 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
+
+        //Caesar64 test
+        [TestMethod]
+        public void TestCaesar64EncodeOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "REVFRA==";
+            Caesar64 crypt = new Caesar64();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestCaesar64EncodeError()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "IRCAKRA=";
+            Caesar64 crypt = new Caesar64();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestCaesar64DecodeOk()
+        {
+            string text = "REVFRA==";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar64 crypt = new Caesar64();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public void TestCaesar64DecodeError()
+        {
+            string text = "IRCAKRA=";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar64 crypt = new Caesar64();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+
+        //Vigenere64 test
+        [TestMethod]
+        public void TestVigenere64EncodeOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "REdURA==";
+            Vigenere64 crypt = new Vigenere64();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestVigenere64EncodeError()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "REDURA==";
+            Vigenere64 crypt = new Vigenere64();
+            string encode = crypt.Encode(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
+        public void TestVigenere64DecodeOk()
+        {
+            string text = "REdURA==";
+            string cypher = "DFS";
+            string ris = "ABBA";
+            Vigenere64 crypt = new Vigenere64();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public void TestVigenere64DecodeError()
+        {
+            string text = "REdURA==";
+            string cypher = "DFS";
+            string ris = "ABBB";
+            Vigenere64 crypt = new Vigenere64();
+            string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
     }
 }

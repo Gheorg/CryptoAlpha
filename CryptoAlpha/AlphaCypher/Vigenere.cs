@@ -21,7 +21,7 @@ namespace AlphaCypher
             return resp;
         }
 
-        public new string Encode(string text, string cypher)
+        public override string Encode(string text, string cypher)
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
