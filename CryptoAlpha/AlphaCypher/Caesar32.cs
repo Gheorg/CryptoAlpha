@@ -26,13 +26,18 @@ namespace AlphaCypher
     public override string Decode(string text, string cypher)
         {
             string resp = "";
-            string res = "";
-            char[] vetChar = text.ToCharArray();
-            byte[] ris = _b32.Decode(vetChar);          
-            resp = Encoding.UTF8.GetString(ris, 0, ris.Length);           
-            res = base.Decode(resp, cypher);
-            
-            return res;
+            string tmpTxt = "";
+            string tmpCyp = "";
+            string tmp ="";
+            byte[] vetBytesCyp32 = Encoding.UTF8.GetBytes(cypher);
+            char[] charCyp32 = _b32.Encode(vetBytesCyp32);
+            tmp = new string(charCyp32);
+            resp = base.Decode(text, tmp);
+            char[] charTxt = resp.ToCharArray();
+            char[] charCyp = cypher.ToCharArray();
+            byte[] vetBytesTxt = _b32.Decode(charTxt);            
+            tmpTxt = Encoding.UTF8.GetString(vetBytesTxt, 0, vetBytesTxt.Length);                   
+            return tmpTxt;
         }
 
         public override Task<string> DecodeAsync(string text, string cypher)

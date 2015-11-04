@@ -24,13 +24,25 @@ namespace AlphaCypher
 
     public override string Decode(string text, string cypher)
         {
-            string resp = "";            
-            char[] vetChar = text.ToCharArray();
-            byte[] ris = _b32.Decode(vetChar);
-            resp = Encoding.UTF8.GetString(ris, 0, ris.Length);
+            string resp = "";
+            string tmpTxt = "";
+            string tmpCyp = "";
+            byte[] vetBytesTxt = Encoding.UTF8.GetBytes(text);
+            byte[] vetBytesCyp = Encoding.UTF8.GetBytes(cypher);
+            char[] charTxt = _b32.Encode(vetBytesTxt);
+            char[] charCyp = _b32.Encode(vetBytesCyp);
+            tmpTxt = new string(charTxt);
+            tmpCyp = new string(charCyp);
             for (int i = 0; i < text.Length; i++)
                 resp += base.Decode(text[i], cypher[i % cypher.Length]);
             return resp;
+            //string resp = "";            
+            //char[] vetChar = text.ToCharArray();
+            //byte[] ris = _b32.Decode(vetChar);
+            //resp = Encoding.UTF8.GetString(ris, 0, ris.Length);
+            //for (int i = 0; i < text.Length; i++)
+            //    resp += base.Decode(text[i], cypher[i % cypher.Length]);
+            //return resp;
         }
 
         public override Task<string> DecodeAsync(string text, string cypher)
@@ -41,13 +53,16 @@ namespace AlphaCypher
         public override string Encode(string text, string cypher)
         {
             string resp = "";
+            string tmpTxt = "";
+            string tmpCyp = "";
+            byte[] vetBytesTxt = Encoding.UTF8.GetBytes(text);
+            byte[] vetBytesCyp = Encoding.UTF8.GetBytes(cypher);
+            char[] charTxt = _b32.Encode(vetBytesTxt);
+            char[] charCyp = _b32.Encode(vetBytesCyp);
+            tmpTxt = new string(charTxt);
+            tmpCyp = new string(charCyp);
             for (int i = 0; i < text.Length; i++)
-            {
-                resp += base.Encode(text[i], cypher[i % cypher.Length]);
-            }
-            byte[] vetBytes = Encoding.UTF8.GetBytes(resp);
-            char[] ris = _b32.Encode(vetBytes);
-            resp = new string(ris);
+                resp += base.Decode(text[i], cypher[i % cypher.Length]);
             return resp;
         }
 

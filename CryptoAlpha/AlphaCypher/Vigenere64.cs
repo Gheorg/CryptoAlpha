@@ -18,7 +18,7 @@ namespace AlphaCypher
         {
             get
             {
-                return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
             }
         }
         public override string Decode(string text, string cypher)

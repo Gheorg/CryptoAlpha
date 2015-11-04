@@ -119,7 +119,7 @@ namespace AlphaCyperTest
         [TestMethod]
         public void TestCaesar32DecodeOk()
         {
-            string text = "IRCUKRA=";
+            string text = "QVADDPH7";
             string cypher = "D";
             string ris = "ABBA";
             Caesar32 crypt = new Caesar32();
@@ -183,7 +183,7 @@ namespace AlphaCyperTest
         {
             string text = "ABBA";
             string cypher = "D";
-            string ris = "REVFRA==";
+            string ris = "hUIBhQ//";
             Caesar64 crypt = new Caesar64();
             string encode = crypt.Encode(text, cypher);
             Assert.AreEqual(encode, ris);
@@ -201,7 +201,7 @@ namespace AlphaCyperTest
         [TestMethod]
         public void TestCaesar64DecodeOk()
         {
-            string text = "REVFRA==";
+            string text = "hUIBhQ//";
             string cypher = "D";
             string ris = "ABBA";
             Caesar64 crypt = new Caesar64();
