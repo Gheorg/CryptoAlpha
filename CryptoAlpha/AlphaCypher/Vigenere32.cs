@@ -62,7 +62,7 @@ namespace AlphaCypher
             tmpTxt = new string(charTxt);
             tmpCyp = new string(charCyp);
             for (int i = 0; i < text.Length; i++)
-                resp += base.Decode(text[i], cypher[i % cypher.Length]);
+               resp += base.Decode(text[i], cypher[i % cypher.Length]);
             return resp;
         }
 
