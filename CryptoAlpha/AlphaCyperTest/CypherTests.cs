@@ -126,6 +126,7 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
+        [TestMethod]
         public void TestCaesar32DecodeError()
         {
             string text = "IRCAKRA=";
@@ -142,14 +143,15 @@ namespace AlphaCyperTest
         {
             string text = "ABBA";
             string cypher = "DFS";
-            string ris = "IRDVIRA=";
+            string ris = "QWEJKPH7";
             Vigenere32 crypt = new Vigenere32();
             string encode = crypt.Encode(text, cypher);
             Assert.AreEqual(encode, ris);
         }
+        [TestMethod]
         public void TestVigenere32DecodeOk()
         {
-            string text = "IRDVIRA=";
+            string text = "QWEJKPH7";
             string cypher = "DFS";
             string ris = "ABBA";
             Vigenere32 crypt = new Vigenere32();
@@ -225,7 +227,7 @@ namespace AlphaCyperTest
         {
             string text = "ABBA";
             string cypher = "DFS";
-            string ris = "REdURA==";
+            string ris = "hYiVhUYS";
             Vigenere64 crypt = new Vigenere64();
             string encode = crypt.Encode(text, cypher);
             Assert.AreEqual(encode, ris);
@@ -243,7 +245,7 @@ namespace AlphaCyperTest
         [TestMethod]
         public void TestVigenere64DecodeOk()
         {
-            string text = "REdURA==";
+            string text = "hYiVhUYS";
             string cypher = "DFS";
             string ris = "ABBA";
             Vigenere64 crypt = new Vigenere64();

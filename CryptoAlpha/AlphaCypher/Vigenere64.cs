@@ -24,13 +24,18 @@ namespace AlphaCypher
         public override string Decode(string text, string cypher)
         {
             string resp = "";
-            string res = "";
-            char[] vetChar = text.ToCharArray();
-            byte[] ris = _b64.Decode(vetChar);
-            resp = Encoding.UTF8.GetString(ris, 0, ris.Length);
-            for (int i = 0; i < resp.Length; i++)
-                res += base.Decode(resp[i], cypher[i % cypher.Length]);
-            return res;
+            string tmpTxt = "";
+            string tmpCyp = "";
+            string tmp = "";
+            byte[] vetBytesCyp32 = Encoding.UTF8.GetBytes(cypher);
+            char[] charCyp32 = _b64.Encode(vetBytesCyp32);
+            tmp = new string(charCyp32);
+            resp = base.Decode(text, tmp);
+            char[] charTxt = resp.ToCharArray();
+            char[] charCyp = cypher.ToCharArray();
+            byte[] vetBytesTxt = _b64.Decode(charTxt);
+            tmpTxt = Encoding.UTF8.GetString(vetBytesTxt, 0, vetBytesTxt.Length);
+            return tmpTxt;
         }
 
         public override Task<string> DecodeAsync(string text, string cypher)
@@ -41,13 +46,15 @@ namespace AlphaCypher
         public override string Encode(string text, string cypher)
         {
             string resp = "";
-            for (int i = 0; i < text.Length; i++)
-            {
-                resp += base.Encode(text[i], cypher[i % cypher.Length]);
-            }
-            byte[] vetBytes = Encoding.UTF8.GetBytes(resp);
-            char[] ris = _b64.Encode(vetBytes);
-            resp = new string(ris);
+            string tmpTxt = "";
+            string tmpCyp = "";
+            byte[] vetBytesTxt = Encoding.UTF8.GetBytes(text);
+            byte[] vetBytesCyp = Encoding.UTF8.GetBytes(cypher);
+            char[] charTxt = _b64.Encode(vetBytesTxt);
+            char[] charCyp = _b64.Encode(vetBytesCyp);
+            tmpTxt = new string(charTxt);
+            tmpCyp = new string(charCyp);
+            resp = base.Encode(tmpTxt, tmpCyp);
             return resp;
         }
 
