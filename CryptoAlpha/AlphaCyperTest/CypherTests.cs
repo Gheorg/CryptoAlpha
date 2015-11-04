@@ -101,7 +101,7 @@ namespace AlphaCyperTest
         {
             string text = "ABBA";
             string cypher = "D";
-            string ris = "IRCUKRA=";
+            string ris = "QVADDPH7";
             Caesar32 crypt = new Caesar32();
             string encode = crypt.Encode(text, cypher);
             Assert.AreEqual(encode, ris);

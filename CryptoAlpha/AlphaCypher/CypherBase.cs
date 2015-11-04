@@ -10,18 +10,24 @@ namespace AlphaCypher
     {
         protected List<Char> _vettAlphabet;
         protected int _displacement;
-
-        public CypherBase()
+        protected virtual string Letters 
+         { 
+            get 
+            { 
+                return "";
+            } 
+        }
+    public CypherBase()
         {
             _vettAlphabet = new List<char>();
             AlphabetInitialization();
         }
         protected virtual void AlphabetInitialization()
         {
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < Letters.Length; i++)
             {
-                char tmp = (char)(i + 65);
-                _vettAlphabet.Add(tmp);
+                //char tmp = (char)(i + 65);
+                _vettAlphabet.Add(Letters[i]);
             }
         }
         private int ResearchPosition(char tmp)
@@ -36,40 +42,32 @@ namespace AlphaCypher
             }
             return resp;
         }
-        
-        public virtual string Encode(char text, char cypher)
-        {
-            string resp = "";
-            int positionTxt = ResearchPosition(text);
-            int positionCypher = ResearchPosition(cypher);
-            int posEncoded = (positionTxt + positionCypher) % 26;
-            resp += _vettAlphabet[posEncoded];
-            return resp;
-        }
-        public virtual string Decode(char text, char cypher)
-        {
-            string resp = "";
-            int positionTxt = ResearchPosition(text);
-            int positionCypher = ResearchPosition(cypher);
-            int posEncoded = (positionTxt - positionCypher + 26) % 26;
-            resp += _vettAlphabet[posEncoded];
-            return resp;
-        }
+        public abstract string Encode(string text, string cypher);
+        protected char Encode(char text, char cypher)
+         { 
+            char resp; 
+            int pos = ResearchPosition(text); 
+            int posCypher = ResearchPosition(cypher); 
+            int posCodificata = (pos + posCypher) % _vettAlphabet.Count; 
+            resp = _vettAlphabet[posCodificata]; 
+             return resp; 
+         }
+        public abstract string Decode(string text, string cypher);
+        protected char Decode(char text, char cypher)
+         { 
+            char resp; 
+            int pos = ResearchPosition(text); 
+            int posCypher = ResearchPosition(cypher); 
+            int posCodificata = (pos - posCypher + _vettAlphabet.Count) % _vettAlphabet.Count; 
+            resp = _vettAlphabet[posCodificata]; 
+            return resp; 
 
-        
-        public virtual string Decode(string text, string cypher)
-        {           
-           return "";
+ 
         }
 
         public virtual Task<string> DecodeAsync(string text, string cypher)
         {
             throw new NotImplementedException();
-        }
-
-        public virtual string Encode(string text, string cypher)
-        {
-            return "";
         }
 
         public virtual Task<string> EncodeAsync(string text, string cypher)

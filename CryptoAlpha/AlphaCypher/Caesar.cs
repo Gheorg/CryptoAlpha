@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 
 namespace AlphaCypher
 {
-    public class Caesar : CypherBase 
+    public class Caesar : Vigenere 
     {
         public Caesar() : base()
         {
 
         }
+         protected override string Letters 
+         { 
+             get 
+             { 
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+             } 
+         }
+
         public Caesar(int displacement) : base()
         {
             _displacement = displacement;

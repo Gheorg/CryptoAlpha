@@ -7,7 +7,7 @@ using WallF.BaseNEncodings;
 
 namespace AlphaCypher
 {
-    public class Caesar32: Caesar
+    public class Caesar32: Vigenere
     {
         private Base32Encoding _b32;
         
@@ -15,7 +15,15 @@ namespace AlphaCypher
         {
             _b32 = new Base32Encoding();
         }
-        public override string Decode(string text, string cypher)
+        protected override string Letters 
+         { 
+             get 
+             { 
+                 return "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567="; 
+             } 
+         }
+
+    public override string Decode(string text, string cypher)
         {
             string resp = "";
             string res = "";
@@ -35,10 +43,15 @@ namespace AlphaCypher
         public override string Encode(string text, string cypher)
         {
             string resp = "";
-            resp=  base.Encode(text, cypher);          
-            byte[] vetBytes = Encoding.UTF8.GetBytes(resp);
-            char[]ris=_b32.Encode(vetBytes);
-            resp = new string(ris);    
+            string tmpTxt = "";
+            string tmpCyp = "";          
+            byte[] vetBytesTxt = Encoding.UTF8.GetBytes(text);
+            byte[] vetBytesCyp = Encoding.UTF8.GetBytes(cypher);
+            char[] charTxt = _b32.Encode(vetBytesTxt);
+            char[] charCyp = _b32.Encode(vetBytesCyp);
+            tmpTxt = new string(charTxt);
+            tmpCyp = new string(charCyp);
+            resp = base.Encode(tmpTxt, tmpCyp);    
             return resp;
         }
 

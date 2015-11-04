@@ -14,6 +14,13 @@ namespace AlphaCypher
         {
             _b64 = new Base64Encoding();
         }
+        protected override string Letters
+        {
+            get
+            {
+                return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+            }
+        }
         public override string Decode(string text, string cypher)
         {
             string resp = "";

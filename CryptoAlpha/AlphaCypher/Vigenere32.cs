@@ -14,7 +14,15 @@ namespace AlphaCypher
         {
             _b32 = new Base32Encoding();
         }
-        public override string Decode(string text, string cypher)
+        protected override string Letters 
+        { 
+             get 
+             { 
+                 return "ABCDEFGHIJKLMNOPQRSTUVWXYZ23567="; 
+             } 
+         }
+
+    public override string Decode(string text, string cypher)
         {
             string resp = "";            
             char[] vetChar = text.ToCharArray();

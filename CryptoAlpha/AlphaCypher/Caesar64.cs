@@ -7,7 +7,7 @@ using WallF.BaseNEncodings;
 
 namespace AlphaCypher
 {
-    public class Caesar64: Caesar
+    public class Caesar64: Vigenere
     {
         private Base64Encoding _b64;
 
@@ -15,7 +15,15 @@ namespace AlphaCypher
         {
             _b64 = new Base64Encoding();
         }
-        public override string Decode(string text, string cypher)
+        protected override string Letters 
+         { 
+             get 
+             { 
+                 return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"; 
+             } 
+         }
+
+    public override string Decode(string text, string cypher)
         {
             string resp = "";
             string res = "";

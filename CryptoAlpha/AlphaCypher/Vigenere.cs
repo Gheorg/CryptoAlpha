@@ -12,8 +12,14 @@ namespace AlphaCypher
         {
 
         }
-
-        public override string Decode(string text, string cypher)
+        protected override string Letters 
+         { 
+             get 
+             { 
+                 return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+             } 
+         }
+    public override string Decode(string text, string cypher)
         {
             string resp = "";
             for (int i = 0; i < text.Length; i++)
