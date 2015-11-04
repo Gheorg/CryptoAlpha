@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AlphaCypher;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System.Threading.Tasks;
 
 namespace AlphaCyperTest
 {
@@ -23,6 +24,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(codifica, ris);
         }
         [TestMethod]
+        public async void TestCaesarEncodeAsyncError()
+        {
+            string text = "ABBA";
+            string cypher = "A";
+            string ris = "EFFE";
+            Caesar crypt = new Caesar();
+            string codifica = await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(codifica, ris);
+        }
+        [TestMethod]
         public void TestCaesarEncodeOk()
         {
             string text = "ABBA";
@@ -30,6 +41,16 @@ namespace AlphaCyperTest
             string ris = "DEED";
             Caesar crypt = new Caesar();
             string codifica = crypt.Encode(text, cypher);
+            Assert.AreEqual(codifica, ris);
+        }
+        [TestMethod]
+        public async void TestCaesarEncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "DEED";
+            Caesar crypt = new Caesar();
+            string codifica = await crypt.EncodeAsync(text, cypher);
             Assert.AreEqual(codifica, ris);
         }
         [TestMethod]
@@ -43,6 +64,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
+        public async void TestCaesarDecodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "XYYX";
+            Caesar crypt = new Caesar();
+            string decode =await crypt.DecodeAsync(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
         public void TestCaesarDecodeError()
         {
             string text = "ABBA";
@@ -52,7 +83,18 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
-       
+
+        [TestMethod]
+        public async Task TestCaesarDecodeAsyncError()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "XYYX";
+            Caesar crypt = new Caesar();
+            string decode = await crypt.DecodeAsync(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+
         //VigenereTest
         [TestMethod]
         public void TestVigenereEncodeOk()

@@ -46,12 +46,12 @@ namespace AlphaCypher
 
         public override Task<string> DecodeAsync(string text, string cypher)
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() => Decode(text, cypher));
         }
 
         public override Task<string> EncodeAsync(string text, string cypher)
         {
-            throw new NotImplementedException();
+            return Task.Factory.StartNew(() => Encode(text, cypher));
         }
     }
 }
