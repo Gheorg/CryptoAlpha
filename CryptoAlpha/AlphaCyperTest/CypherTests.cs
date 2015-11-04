@@ -24,16 +24,6 @@ namespace AlphaCyperTest
             Assert.AreEqual(codifica, ris);
         }
         [TestMethod]
-        public async void TestCaesarEncodeAsyncError()
-        {
-            string text = "ABBA";
-            string cypher = "A";
-            string ris = "EFFE";
-            Caesar crypt = new Caesar();
-            string codifica = await crypt.EncodeAsync(text, cypher);
-            Assert.AreEqual(codifica, ris);
-        }
-        [TestMethod]
         public void TestCaesarEncodeOk()
         {
             string text = "ABBA";
@@ -44,7 +34,7 @@ namespace AlphaCyperTest
             Assert.AreEqual(codifica, ris);
         }
         [TestMethod]
-        public async void TestCaesarEncodeAsyncOk()
+        public async Task TestCaesarEncodeAsyncOk()
         {
             string text = "ABBA";
             string cypher = "D";
@@ -64,7 +54,7 @@ namespace AlphaCyperTest
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
-        public async void TestCaesarDecodeAsyncOk()
+        public async Task TestCaesarDecodeAsyncOk()
         {
             string text = "ABBA";
             string cypher = "D";
@@ -83,17 +73,7 @@ namespace AlphaCyperTest
             string decode = crypt.Decode(text, cypher);
             Assert.AreEqual(decode, ris);
         }
-
-        [TestMethod]
-        public async Task TestCaesarDecodeAsyncError()
-        {
-            string text = "ABBA";
-            string cypher = "D";
-            string ris = "XYYX";
-            Caesar crypt = new Caesar();
-            string decode = await crypt.DecodeAsync(text, cypher);
-            Assert.AreEqual(decode, ris);
-        }
+        
 
         //VigenereTest
         [TestMethod]
@@ -107,6 +87,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public async Task TestVigenereEncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "DGTD";
+            Vigenere crypt = new Vigenere();
+            string encode =await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
         public void TestVigenereDecodeOk()
         {
             string text = "ABBA";
@@ -114,6 +104,16 @@ namespace AlphaCyperTest
             string ris = "XWJX";
             Vigenere crypt = new Vigenere();
             string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public async Task TestVigenereDecodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "XWJX";
+            Vigenere crypt = new Vigenere();
+            string decode =await crypt.DecodeAsync(text, cypher);
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
@@ -149,6 +149,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public async Task TestCaesar32EncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "QVADDPH7";
+            Caesar32 crypt = new Caesar32();
+            string encode =await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
         public void TestCaesar32EncodeError()
         {
             string text = "ABBA";
@@ -166,6 +176,16 @@ namespace AlphaCyperTest
             string ris = "ABBA";
             Caesar32 crypt = new Caesar32();
             string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public async Task TestCaesar32DecodeAsyncOk()
+        {
+            string text = "QVADDPH7";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar32 crypt = new Caesar32();
+            string decode =await crypt.DecodeAsync(text, cypher);
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
@@ -191,6 +211,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public async Task TestVigenere32EncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "QWEJKPH7";
+            Vigenere32 crypt = new Vigenere32();
+            string encode =await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
         public void TestVigenere32DecodeOk()
         {
             string text = "QWEJKPH7";
@@ -198,6 +228,16 @@ namespace AlphaCyperTest
             string ris = "ABBA";
             Vigenere32 crypt = new Vigenere32();
             string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public async Task TestVigenere32DecodeAsyncOk()
+        {
+            string text = "QWEJKPH7";
+            string cypher = "DFS";
+            string ris = "ABBA";
+            Vigenere32 crypt = new Vigenere32();
+            string decode =await crypt.DecodeAsync(text, cypher);
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
@@ -233,6 +273,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public async Task TestCaesar64EncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "D";
+            string ris = "hUIBhQ//";
+            Caesar64 crypt = new Caesar64();
+            string encode =await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
         public void TestCaesar64EncodeError()
         {
             string text = "ABBA";
@@ -250,6 +300,16 @@ namespace AlphaCyperTest
             string ris = "ABBA";
             Caesar64 crypt = new Caesar64();
             string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public async Task TestCaesar64DecodeAsyncOk()
+        {
+            string text = "hUIBhQ//";
+            string cypher = "D";
+            string ris = "ABBA";
+            Caesar64 crypt = new Caesar64();
+            string decode =await crypt.DecodeAsync(text, cypher);
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
@@ -275,6 +335,16 @@ namespace AlphaCyperTest
             Assert.AreEqual(encode, ris);
         }
         [TestMethod]
+        public async Task TestVigenere64EncodeAsyncOk()
+        {
+            string text = "ABBA";
+            string cypher = "DFS";
+            string ris = "hYiVhUYS";
+            Vigenere64 crypt = new Vigenere64();
+            string encode =await crypt.EncodeAsync(text, cypher);
+            Assert.AreEqual(encode, ris);
+        }
+        [TestMethod]
         public void TestVigenere64EncodeError()
         {
             string text = "ABBA";
@@ -292,6 +362,16 @@ namespace AlphaCyperTest
             string ris = "ABBA";
             Vigenere64 crypt = new Vigenere64();
             string decode = crypt.Decode(text, cypher);
+            Assert.AreEqual(decode, ris);
+        }
+        [TestMethod]
+        public async Task TestVigenere64DecodeAsyncOk()
+        {
+            string text = "hYiVhUYS";
+            string cypher = "DFS";
+            string ris = "ABBA";
+            Vigenere64 crypt = new Vigenere64();
+            string decode =await crypt.DecodeAsync(text, cypher);
             Assert.AreEqual(decode, ris);
         }
         [TestMethod]
